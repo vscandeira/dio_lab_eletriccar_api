@@ -4,9 +4,9 @@ import com.example.eletriccar_api.domain.Car
 
 class CarDto (
     val price: Number,
-    val battery: Number,
-    val power: Number,
-    val charge: Number,
+    val battery: Number?,
+    val power: Number?,
+    val charge: Number?,
     val urlPhoto: String
 ) {
     fun toEntity(): Car = Car(

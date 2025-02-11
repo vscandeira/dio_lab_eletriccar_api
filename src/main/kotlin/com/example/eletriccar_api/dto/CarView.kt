@@ -5,9 +5,9 @@ import com.example.eletriccar_api.domain.Car
 data class CarView (
     val id : Long?,
     val price: Number,
-    val battery: Number,
-    val power: Number,
-    val charge: Number,
+    val battery: Number?,
+    val power: Number?,
+    val charge: Number?,
     val urlPhoto: String
 ){
     constructor(car: Car): this (

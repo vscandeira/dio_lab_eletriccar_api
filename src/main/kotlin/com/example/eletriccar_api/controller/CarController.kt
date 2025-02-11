@@ -16,14 +16,24 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/car")
+@RequestMapping("/api/cars")
 class CarController(
     private val carService: CarService
 ) {
-    @PostMapping
+    @PostMapping("/save")
     fun saveCar(@RequestBody carDto: CarDto): String{
         val savedCar = this.carService.saveCar(carDto.toEntity())
         return "Car ${savedCar.id} saved successfully"
+    }
+
+    @GetMapping("/")
+    fun findAllCars(): List<CarView> {
+        val cars = this.carService.findAllCars()
+        val carsV : MutableList<CarView> = mutableListOf()
+        for (car in cars){
+            carsV.add(CarView(car))
+        }
+        return carsV
     }
 
     @GetMapping("/{car_id}")
@@ -45,4 +55,5 @@ class CarController(
         this.carService.saveCar(newCar)
         return CarView(newCar)
     }
+
 }

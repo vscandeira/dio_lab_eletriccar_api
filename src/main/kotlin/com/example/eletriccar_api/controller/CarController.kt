@@ -5,6 +5,9 @@ import com.example.eletriccar_api.dto.CarUpdateDto
 import com.example.eletriccar_api.dto.CarView
 import com.example.eletriccar_api.service.impl.CarService
 import jakarta.websocket.server.PathParam
+import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatusCode
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -21,39 +24,39 @@ class CarController(
     private val carService: CarService
 ) {
     @PostMapping("/save")
-    fun saveCar(@RequestBody carDto: CarDto): String{
+    fun saveCar(@RequestBody carDto: CarDto): ResponseEntity<String> {
         val savedCar = this.carService.saveCar(carDto.toEntity())
-        return "Car ${savedCar.id} saved successfully"
+        return ResponseEntity.status(HttpStatus.CREATED).body("Car ${savedCar.id} saved successfully")
     }
 
     @GetMapping("/")
-    fun findAllCars(): List<CarView> {
+    fun findAllCars() : ResponseEntity<List<CarView>> {
         val cars = this.carService.findAllCars()
         val carsV : MutableList<CarView> = mutableListOf()
         for (car in cars){
             carsV.add(CarView(car))
         }
-        return carsV
+        return ResponseEntity.status(HttpStatus.OK).body(carsV)
     }
 
-    @GetMapping("/{car_id}")
-    fun findCarById(@PathVariable car_id: Long) : CarView {
-        val car = this.carService.findCarById(car_id)
-        return CarView(car)
+    @GetMapping("/{carId}")
+    fun findCarById(@PathVariable carId: Long) : ResponseEntity<CarView> {
+        val car = this.carService.findCarById(carId)
+        return ResponseEntity.status(HttpStatus.OK).body(CarView(car))
     }
 
     @DeleteMapping("/delete")
-    fun deleteCarById(@RequestParam car_id: Long):String {
-        this.carService.deleteCar(car_id)
-        return "Car $car_id deleted successfuly"
+    fun deleteCarById(@RequestParam carId: Long) : ResponseEntity<String> {
+        this.carService.deleteCar(carId)
+        return ResponseEntity.status(HttpStatus.OK).body("Car $carId deleted successfuly")
     }
 
     @PutMapping("/update")
-    fun updateCar(@RequestParam car_id: Long, @RequestBody carUpdateDto: CarUpdateDto): CarView{
-        val oldCar = this.carService.findCarById(car_id)
+    fun updateCar(@RequestParam carId: Long, @RequestBody carUpdateDto: CarUpdateDto): ResponseEntity<CarView> {
+        val oldCar = this.carService.findCarById(carId)
         val newCar = carUpdateDto.toEntity(oldCar)
         this.carService.saveCar(newCar)
-        return CarView(newCar)
+        return ResponseEntity.status(HttpStatus.OK).body(CarView(newCar))
     }
 
 }

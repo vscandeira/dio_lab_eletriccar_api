@@ -4,9 +4,7 @@ import com.example.eletriccar_api.dto.CarDto
 import com.example.eletriccar_api.dto.CarUpdateDto
 import com.example.eletriccar_api.dto.CarView
 import com.example.eletriccar_api.service.impl.CarService
-import jakarta.websocket.server.PathParam
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -48,7 +46,7 @@ class CarController(
     @DeleteMapping("/delete")
     fun deleteCarById(@RequestParam carId: Long) : ResponseEntity<String> {
         this.carService.deleteCar(carId)
-        return ResponseEntity.status(HttpStatus.OK).body("Car $carId deleted successfuly")
+        return ResponseEntity.status(HttpStatus.OK).body("Car $carId deleted successfully")
     }
 
     @PutMapping("/update")

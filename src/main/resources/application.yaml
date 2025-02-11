@@ -7,6 +7,10 @@ spring:
         transaction:
           jta:
             platform: null
+    hibernate:
+      format_sql: true
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 #    hibernate:
 #      ddl-auto: create-drop
   h2:

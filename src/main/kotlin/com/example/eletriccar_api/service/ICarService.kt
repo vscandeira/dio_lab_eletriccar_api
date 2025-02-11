@@ -1,7 +1,6 @@
 package com.example.eletriccar_api.service
 
 import com.example.eletriccar_api.domain.Car
-import java.util.Optional
 
 interface ICarService {
     fun saveCar(car: Car): Car

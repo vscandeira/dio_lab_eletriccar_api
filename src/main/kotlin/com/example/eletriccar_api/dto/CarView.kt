@@ -1,13 +1,14 @@
 package com.example.eletriccar_api.dto
 
 import com.example.eletriccar_api.domain.Car
+import java.math.BigDecimal
 
 data class CarView (
     val id : Long?,
-    val price: Number,
-    val battery: Number?,
-    val power: Number?,
-    val charge: Number?,
+    val price: BigDecimal,
+    val battery: BigDecimal?,
+    val power: BigDecimal?,
+    val charge: BigDecimal?,
     val urlPhoto: String
 ){
     constructor(car: Car): this (

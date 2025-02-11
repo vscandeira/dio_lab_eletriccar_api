@@ -4,7 +4,6 @@ import com.example.eletriccar_api.domain.Car
 import com.example.eletriccar_api.repository.CarRepository
 import com.example.eletriccar_api.service.ICarService
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 @Service
 class CarService(

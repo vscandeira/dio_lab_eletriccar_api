@@ -2,6 +2,7 @@ spring:
   application:
     name: eletriccar_api
   jpa:
+    show-sql: true
     properties:
       hibernate:
         transaction:
@@ -11,16 +12,20 @@ spring:
       format_sql: true
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#    hibernate:
+      ddl-auto: update
 #      ddl-auto: create-drop
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: false
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#      settings:
+#        trace: false
+#        web-allow-others: false
   datasource:
-    url: jdbc:h2:mem:eletric_cars_db
-    username: app
+    url: jdbc:mariadb://localhost:3306/cardb
+    username: carapp
+    password: secret
+    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:h2:mem:eletric_cars_db
+#    username: app
 #    password: pass123

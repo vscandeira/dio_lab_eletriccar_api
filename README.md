@@ -4,7 +4,6 @@ Basic API with Spring Boot and Kotlin developed for continuing DIO's (Digital In
 ## TO-DO
 + Follow the training path
 + More suitable database model for new funcionalities
-+ Add other database with persistence
 + Add pagination
 + Add user module for registering, login and logout, favorites per user
 + Input validation, test authentication and authorization

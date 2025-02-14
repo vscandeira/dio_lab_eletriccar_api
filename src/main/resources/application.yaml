@@ -13,9 +13,10 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
-#      ddl-auto: create-drop
   datasource:
-    url: jdbc:postgresql://localhost:5432/cardb?currentSchema=eletriccar
+#    url: jdbc:postgresql://db:5432/cardb?currentSchema=eletriccar # para caso de uso via docker-compose
+    url: jdbc:postgresql://172.19.0.2:5432/cardb?currentSchema=eletriccar # para containers construídos na mão
+#    url: jdbc:postgresql://localhost:5432/cardb?currentSchema=eletriccar # para execução toda local (necessário instalar configurar o sgbd na máquina host)
     username: carapp
     password: secret
     driver-class-name: org.postgresql.Driver
